@@ -9,6 +9,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
+library(ggridges)
 ```
 
 ## create weather data
@@ -95,4 +96,53 @@ geom_point(aes(size = prcp), alpha = .3) +
   geom_smooth(size = 2, se = FALSE)
 ```
 
-size = 2,
+```{r}
+
+install.packages("hexbin")
+
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_bin2d()
+```
+
+## more plots
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmax, color = name)) +
+  geom_histogram()
+
+weather_df %>%
+  ggplot(aes(x = tmax, fill = name)) +
+  geom_histogram()
+
+weather_df %>%
+  ggplot(aes(x = tmax, fill = name)) +
+  geom_histogram(position = "dodge", binwidth = 2)
+
+weather_df %>%
+  ggplot(aes(x = tmax, fill = name)) +
+  geom_histogram() +
+  facet_grid(~name)
+
+S
+```
+
+```{r}
+ggplot(weather_df, aes(x = name, y = tmax)) + geom_boxplot()
+```
+
+```{r}
+ggplot(weather_df, aes(x = name, y = tmax)) + 
+  geom_violin(aes(fill = name), color = "blue", alpha = .5) + 
+  stat_summary(fun.y = median, geom = "point", color = "blue", size = 4)
+
+ggplot(weather_df, aes(x = tmax, y = name)) + 
+  geom_density_ridges(scale = .85)
+```
+
+```{r}
+ggplot(weather_df, aes(x = tmax, y = name)) + 
+  geom_density_ridges(scale = .85)
+```
+
