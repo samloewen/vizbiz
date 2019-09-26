@@ -142,7 +142,9 @@ ggplot(weather_df, aes(x = tmax, y = name)) +
 ```
 
 ```{r}
+weather_plot=
 ggplot(weather_df, aes(x = tmax, y = name)) + 
   geom_density_ridges(scale = .85)
+ggsave("weather_plot.pdf", weather_plot, width = 8, height = 5)
 ```
 
