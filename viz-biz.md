@@ -91,3 +91,75 @@ weather_df %>%
     ## Warning: Removed 15 rows containing missing values (geom_point).
 
 ![](viz-biz_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+weather_df %>%
+    ggplot(aes(x = tmin, y = tmax)) +   
+geom_point(aes(color = name), alpha = .5)
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](viz-biz_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+weather_df %>%
+    ggplot(aes(x = tmin, y = tmax)) +   
+geom_point(aes(color = name), alpha = .5) +
+  geom_smooth(se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](viz-biz_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+ggplot(weather_df, aes(x = tmin, y = tmax, color = name)) + 
+  geom_point(alpha = .5) +
+  geom_smooth(se = FALSE) + 
+  facet_grid(. ~ name)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](viz-biz_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+``` r
+ggplot(weather_df, aes(x = date, y = tmax, color = name)) + 
+  geom_point(aes(size = prcp), alpha = .5) +
+  geom_smooth(se = FALSE) + 
+  facet_grid(. ~ name)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 3 rows containing missing values (geom_point).
+
+![](viz-biz_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+weather_df %>%
+    ggplot(aes(x = date, y = tmax, color = name)) +   
+geom_point(aes(size = prcp), alpha = .3) +
+  geom_smooth(size = 2, se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 3 rows containing missing values (geom_point).
+
+![](viz-biz_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+size = 2,
